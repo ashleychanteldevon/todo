@@ -1,5 +1,10 @@
 class TasksController < ApplicationController
 
+  def create
+    task =Task.create(task_params)
+    render json: task
+  end
+
   def index
     render json: Task.order(:id)
   end
@@ -13,6 +18,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:done)
+    params.require(:task).permit(:done, :title)
   end
 end
